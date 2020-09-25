@@ -34,3 +34,26 @@ class Solution:
                 
         return self.count
             
+"""
+[빠른 풀이]
+- targets : 만약 node.val이 여기 안에 있다면 찾는 path야
+- 이러한 역할을 하는 targets를 계속 갱신하면서 dfs 한다
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    count = 0
+    def pathSum(self, root: TreeNode, k: int) -> int:
+        def dfs(node, targets): 
+            if not node:
+                return 0
+            
+            new_targets = [targets[0]] + [t - node.val for t in targets]
+            return targets.count(node.val) + dfs(node.left, new_targets) + dfs(node.right, new_targets)
+        
+        return dfs(root, [k])
+"""
