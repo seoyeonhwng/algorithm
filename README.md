@@ -16,8 +16,8 @@ for col in zip(*A):
     print(col) # (1,4,7) (2,5,8) (3,6,9)
 ```
 
-* 단조 증가 또는 단조 감소 배열인지 확인하는 코드
-``` all(x<=y for x, y in zip(L, L[1:]))
-    all(x>=y for x, y in zip(L, L[1:]))
+* 단조 감소 배열인지 확인
+```
+all(x>=y for x, y in zip(L, L[1:]))
 ```
 
