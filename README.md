@@ -27,6 +27,15 @@ for col in zip(*A):
     print(col) # (1,4,7) (2,5,8) (3,6,9)
 ```
 
+* 이차원 배열 모든 원소 합
+```
+from itertools import chain
+
+A = [[1,2,3], [4,5,6], [7,8,9]]
+total_sum = sum(chain(*A)) # chain은 리스트를 연결해줌
+```
+
+
 * 이차원 배열 탐색
 ```
 di = [0, 1, 2, 3] # 'up', 'right', 'down', 'left'
