@@ -8,3 +8,7 @@ class Solution:
             prev = prev * 2 + A[i]
         
         return answer
+
+"""
+- 왼쪽으로 shift = 2를 곱한다
+"""
