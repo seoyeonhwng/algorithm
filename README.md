@@ -3,16 +3,19 @@
 ## 플로이드 와샬
 * 그래프에서 가능한 모든 노드 쌍에 대한 최단 거리를 구할때 사용한다. (N * N matrix를 생각하자!)
 ```
-1. N * N matrix 선언 (N = 정점의 개수)
+1. N * N matrix 선언 
+  - N = 정점의 개수
+  - matrix의 값은 무한대로 채운다.
 
-2. 노드 간의 거리 표시
+2. 선언한 matrix에 노드 간의 거리 표시
+  - 대각원소는 0으로 채운다.
 
 3. 최단 거리 계산
 for k in range(N):
-  for i in range(N):
-    for j in range(N):
-      if matrix[i][j] > matrix[i][k] + matrix[k][j]:
-        matrix[i][j] = matrix[i][k] + matrix[k][j]
+    for i in range(N):
+        for j in range(N):
+            if matrix[i][j] > matrix[i][k] + matrix[k][j]:
+                matrix[i][j] = matrix[i][k] + matrix[k][j]
 ```
 
 ## 이차원 배열
