@@ -17,7 +17,21 @@
 #### 어떤 문제에 사용해야할까?
 * 최적 부분 구조 
 * 중복된 문제
-  
+
+## 플로이드 와샬
+* 그래프에서 가능한 모든 노드 쌍에 대한 최단 거리를 구할때 사용한다.
+```
+1. N * N matrix 선언 (N = 정점의 개수)
+
+2. 노드 간의 거리 표시
+
+3. 최단 거리 계산
+for k in range(N):
+  for i in range(N):
+    for j in range(N):
+      if matrix[i][j] > matrix[i][k] + matrix[k][j]:
+        matrix[i][j] = matrix[i][k] + matrix[k][j]
+```
 
 ## 이차원 배열
 * 이차원 배열에서 column별로 볼때는 zip을 이용한다.
