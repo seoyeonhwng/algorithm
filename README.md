@@ -4,20 +4,19 @@
 * 두 노드 사이의 최단 거리 (간선의 개수)를 구할때 사용 -> depth가 최단 거리가 된다!
 ```
 def bfs(start):
-  queue = collections.deque([start])
-  path = [start]
-  check = [0] * N # 각 노드의 BFS depth를 저장
-  
+  queue = collections.deque([(start, 0)]) # 큐에 (노드, depth)를 저장
+  path = set([start])
+ 
   while queue:
-    v = queue.popleft() # deque.popleft는 O(1)
-    if v == *{종료 조건}*:
-      return
+    v, depth = queue.popleft() # deque.popleft는 O(1)
+    if v == {종료 조건}:
+      return depth
       
-    for w in *{w가 갈 수 있는 위치}*:
-      if *{w가 유효한 조건 ex.첫방문, 양수}*:
-        queue.append(w)
-        path.append(w)
-        check[w] = check[v] + 1 # w의 depth = v의 depth + 1
+    for w in {w가 갈 수 있는 위치}:
+      if {w가 유효한 조건 ex.첫방문, 양수}:
+        queue.append((w, depth + 1))
+        path.add(w)
+  retrun -1 # 두 노드 사이의 최단 거리 존재 안함
 ```
  
   
