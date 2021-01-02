@@ -24,3 +24,4 @@ for i in range(N):
             
 for row in matrix:
     print(' '.join(str(r) for r in row))
+

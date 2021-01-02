@@ -23,3 +23,5 @@ for i in range(N):
 
 for c in check:
     print(N - c - 1)
+
+

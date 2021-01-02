@@ -10,3 +10,4 @@ for k in range(N):
 
 for row in matrix:
     print(' '.join([r for r in row]))
+
