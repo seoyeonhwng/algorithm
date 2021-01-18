@@ -1,53 +1,61 @@
-from collections import deque, defaultdict
+from collections import deque
+import sys
 
-def bfs(queue):
-    count = defaultdict(list)
-
+def fill_water(queue):
     while queue:
-        v, a, b = queue.popleft()
+        x, y = queue.popleft()
 
-        for new_a, new_b in [(a+1,b), (a-1,b), (a, b+1), (a, b-1)]:
-            if new_a < 0 or new_a >= R or new_b < 0 or new_b >= C:
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
+            if nx < 0 or nx >= R or ny < 0 or ny >= C:
+                continue
+            if mat[nx][ny] in ['X', 'D'] or water[nx][ny] != -1:
                 continue
             
-            # 물인 경우는 상하좌우 중에 비어있는 곳이 있다면 물로 채워줌
-            if v == '*' and mat[new_a][new_b] == '.':
-                queue.append(('*', new_a, new_b))
-                mat[new_a][new_b] = '*'
-            # 이제부터는 첫방문이고 .이거나 D인 경우만 갈 수 있다
-            else:
-                if visited[new_a][new_b]:
-                    continue
+            queue.append((nx, ny))
+            water[nx][ny] = water[x][y] + 1
 
-                if mat[new_a][new_b] == '.':
-                    queue.append(('.', new_a, new_b))
-                    visited[new_a][new_b] = True
-                    count[(new_a, new_b)] = count[(a, b)] + 1
-                elif mat[new_a][new_b] == 'D':
-                    return count[(a, b)] + 1
-        return 'KAKTUS'
+def bfs():
+    queue = deque([(sx, sy, 0)])
+    visited = set([(sx, sy)])
+
+    while queue:
+        x, y, count = queue.popleft()
+        if (x, y) == (ex, ey):
+            return count
+
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
+            if nx < 0 or nx >= R or ny < 0 or ny >= C:
+                continue
+            if mat[nx][ny] == 'X' or (nx, ny) in visited:
+                continue
+
+            if water[nx][ny] == -1 or water[nx][ny] > count + 1: # 물이 닿을 수 없는 곳이거나 나중에 물이 차오는 곳인 경우
+                queue.append((nx, ny, count + 1))
+                visited.add((nx, ny))
+    return "KAKTUS"
 
 
 
 R, C = map(int, input().split(' '))
 mat = [list(input()) for _ in range(R)]
-visited = [[False] * C for _ in range(R)]
 
-# S와 D사이의 최단 거리 -> BFS
-# 물과 고슴도치 둘다 이동하므로 둘다 큐에 넣는다!
-queue = deque()
 
-# 물 먼저 넣는다.
-for i in range(R):
-    for j in range(C):
-        if mat[i][j] == '*':
-            queue.append(('*', i, j))
-
-# S 넣는다.
+water, queue = [[-1] * C for _ in range(R)], deque()
 for i in range(R):
     for j in range(C):
         if mat[i][j] == 'S':
-            queue.append(('S', i, j))
-            visited[i][j] = True
+            sx, sy = i, j
+        elif mat[i][j] == 'D':
+            ex, ey = i, j
+        elif mat[i][j] == '*':
+            water[i][j] = 0
+            queue.append((i, j))
+            
 
-print(bfs(queue))
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+fill_water(queue)
+print(bfs())
