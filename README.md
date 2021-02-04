@@ -85,3 +85,11 @@ counter += collections.Counter() # 빈 counter를 더한다
 all(x>=y for x, y in zip(L, L[1:]))
 ```
 
+* 배열 회전 (deque를 이용하는 방법이 slicing보다 빠름)
+```
+from collections import deque
+
+queue = deque([1,2,3])
+queue.rotate(1) # [3, 1, 2]
+```
+
