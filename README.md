@@ -24,22 +24,22 @@ def bfs(start):
 ```
 
 ## 다익스트라 (최단 거리)
-* 그래프의 한 정점에서 모든 정점까지의 최단 거리를 구할때 사용한다. (크기가 N인 배열을 생각하자!)
+* 그래프의 한 정점에서 모든 정점까지의 최단 거리를 구할때 사용한다.
+  * 임의의 정점을 출발 집합에 더할 때, 그 정점까지의 최단거리는 구했다는 확신
   * 힙을 사용하여 최단 거리가 가장 짧은 노드를 선택
 ```
 def dijstra(start):
   heap = [(0, start)]
-  dist = [sys.maxsize] * N
+  dist = defaultdict(int)
   
   while heap:
-    cost, now = heapq.heappop(heap)
-    if dist[now] < cost: # 이미 최단 거리를 찾은 노드
+    cost, node = heapq.heappop(heap)
+    if node in dist: # 이미 최단 거리를 찾은 노드
       continue
-    for w, cost_w in graph[now]:
-      new_cost = cost + cost_w
-      if new_cost < dist[now]:
-        dist[now] = new_cost
-        heapq.heappush(heap, (new_cost, w))
+     
+    dist[node] = cost
+    for w, wc in graph[node]:
+      heapq.heappush(heap, (wc + cost, w))
 ```
 
 ## 플로이드 와샬 (최단 거리)
