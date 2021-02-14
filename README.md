@@ -42,6 +42,22 @@ def dijstra(start):
       heapq.heappush(heap, (wc + cost, w))
 ```
 
+## 벨만포드 (최단 거리)
+* 그래프의 한 정점에서 모든 정점까지의 최단 거리 + 음수 간선 포함일 때 사용한다.
+  * 전체 간선을 확인하며 최단 거리 갱신 -> 이 과정을 N-1번 반복
+```
+def bf(start):
+  dist[start] = 0
+  for i in range(n):
+    for j in range(m):
+      cur, next, cost = edges[j]
+      if dist[cur] != INF and dist[next] > dist[cur] + cost:
+        dist[next] = dist[cur] + cost
+        if i == n-1: # n번째 라운드에 값 갱신되면 사이클 존재
+          return True
+   return False
+```
+
 ## 플로이드 와샬 (최단 거리)
 * 그래프에서 가능한 모든 노드 쌍에 대한 최단 거리를 구할때 사용한다. (N * N matrix를 생각하자!)
 ```
