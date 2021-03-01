@@ -23,7 +23,7 @@ def bfs():
                 queue.append((nx, ny, k, count + 1, not is_day))
 
             if mat[nx][ny] == '1' and k > 0 and dp[nx][ny][k-1] > count + 1: # 벽 부수는 경우
-                if is_day:
+                if is_day: # 낮이면 부숨
                     dp[nx][ny][k-1] = count + 1
                     queue.append((nx, ny, k-1, count + 1, not is_day))
                 else: # 하루 기다림
