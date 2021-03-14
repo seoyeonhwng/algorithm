@@ -127,7 +127,6 @@ total_sum = sum(chain(*A)) # chain은 리스트를 연결해줌
 
 * 이차원 배열 탐색
 ```
-di = [0, 1, 2, 3] # 'up', 'right', 'down', 'left'
 di = (di - 1) % 4 # 왼쪽 회전
 di = (di + 1) % 4 # 오른쪽 회전
 
