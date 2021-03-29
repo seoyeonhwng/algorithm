@@ -163,6 +163,12 @@ A = [[1,2,3], [4,5,6], [7,8,9]]
 total_sum = sum(chain(*A)) # chain은 리스트를 연결해줌
 ```
 
+* 이차원 배열 delta 크기로 자르기
+```
+for x in range(0, n, delta):
+  for y in range(0, n, delta):
+    sub = [mat[i][y:y+delta] for i in range(x, x+delta)]
+```
 
 * 이차원 배열 탐색
 ```
