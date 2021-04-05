@@ -142,9 +142,9 @@ def union_parent(a, b):
   a = find_parent(a)
   b = find_parent(b)
   if a < b:
-    parent[a] = b
-  else:
     parent[b] = a
+  else:
+    parent[a] = b
 ```
 
 ## 이차원 배열
