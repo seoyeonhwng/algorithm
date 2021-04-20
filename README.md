@@ -148,6 +148,19 @@ def union_parent(a, b):
 ```
 
 ## 이차원 배열
+* 이차원 배열 돌리기 (사각형 테두리 원소 회전)
+```
+prev = mat[x][y]
+for i in range(4): # 원하는 회전 방향 순서 지정
+    for _ in range(n): # 테두리당 이동 횟수
+        nx, ny = x + dx[i], y + dy[i]
+        if nx < 0 or nx >= N or ny < 0 or ny >= M:
+            continue
+        tmp = mat[nx][ny]
+        mat[nx][ny] = prev
+        prev, x, y = tmp, nx, ny
+```
+
 * 이차원 배열에서 column별로 볼때는 zip을 이용한다.
 ``` 
 A = [[1,2,3], [4,5,6], [7,8,9]]
