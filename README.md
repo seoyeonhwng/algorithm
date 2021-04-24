@@ -182,14 +182,28 @@ for x in range(0, n, delta):
     sub = [mat[i][y:y+delta] for i in range(x, x+delta)]
 ```
 
-* 이차원 배열 탐색
+* 이차원 배열 회전
 ```
-di = (di - 1) % 4 # 왼쪽 회전
-di = (di + 1) % 4 # 오른쪽 회전
+def rotate_anticlockwise(mat):
+    N, M = len(mat), len(mat[0])
+    tmp = [[-1] * N for _ in range(M)]
 
-dx = [0, 1, 0, -1]
-dy = [1, 0, -1, 0]
-(x, y) -> (x + dx[di], y + dy[di])로 이동
+    for i in range(N):
+        for j in range(M):
+            tmp[M-j-1][i] = mat[i][j]
+    return tmp
+
+def rotate_clockwise1(mat):
+    N, M = len(mat), len(mat[0])
+    tmp = [[-1] * N for _ in range(M)]
+
+    for i in range(N):
+        for j in range(M):
+            tmp[j][N-i-1] = mat[i][j]
+    return tmp
+
+def rotate_clockwise2(mat):
+    return list(zip(*mat[::-1]))
 ```
 
 ## counter
