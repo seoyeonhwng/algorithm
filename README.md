@@ -208,6 +208,7 @@ def rotate_clockwise2(mat):
 
 ## counter
 * 값이 0이하인 원소 없애기
+* but) del로 삭제하는 것이 더 빠름!
 ```
 counter += collections.Counter() # 빈 counter를 더한다
 ```
