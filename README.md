@@ -1,5 +1,16 @@
 *코드 스니펫을 정리합니다.*
 
+## 내가 정의한 함수로 정렬하기
+```
+from functools import cmp_to_key
+
+def compare(a, b):
+  # 비교 함수를 직접 정의
+  pass
+  
+arr = sorted(arr, key=cmp_to_key(compare))
+```
+
 ## 파라메트릭 서치 (Parametric Search)
 * 범위 내에서 조건을 만족하는 가장 큰 값을 찾는 최적화 문제
 * 이진 탐색으로 결정 문제를 해결하면서 범위를 좁혀감 (mid가 해당되는지 안되는지 여부)
